@@ -1,0 +1,15 @@
+.popup__content {
+    position: relative;
+    max-width: 430px;
+    width: 100%;
+    background-color: #FFF;
+    border-radius: 10px;
+    box-sizing: border-box;
+    transition: visibility 0s linear, opacity 2s ease-in-out;
+}
+
+@media (max-width: 600px) {
+    .popup__content {
+        max-width: 282px;
+    }
+}

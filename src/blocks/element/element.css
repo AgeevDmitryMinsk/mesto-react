@@ -1,0 +1,25 @@
+.element { 
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 282px;
+}
+
+@media (min-width: 1280px) {
+    .element {
+        max-width: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .element {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 900px) {
+    .element:last-child {
+        margin-bottom: 0;
+    }
+}
