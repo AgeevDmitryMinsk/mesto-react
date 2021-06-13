@@ -2,6 +2,19 @@ import avatar from "../images/avatar.png";
 
 
 function Main() {
+
+    function handleEditAvatarClick(){
+
+    }
+
+    function handleEditProfileClick(){
+        
+    }
+    
+    function handleAddPlaceClick() {
+        
+    }
+
     return (
         <main className="content project-area__section-position">
             <section className="profile">
