@@ -1,5 +1,3 @@
-
-
 function Footer() {
     return (
         <footer className="footer project-area__section-position">
