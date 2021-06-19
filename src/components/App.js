@@ -11,7 +11,10 @@ function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false)
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen]       = React.useState(false)
     const [isDeletePlacePopupOpen, setIsDeletePlacePopupOpen] = React.useState(false)
-    const [selectedCard, setSelectedCard]                     = React.useState('')
+    //const [selectedCard, setSelectedCard]                     = React.useState('') исправил на:
+    const [selectedCard, setSelectedCard]                     = React.useState({})
+    //Карточка по умолчанию должна быть либо пустым объектом по чек-листу Gennadiy Barsegyan, ревьюер 19/06/21
+    const [isImagePopupOpen, setImagePopupOpen]               = React.useState(false);
 
 
     function handleEditAvatarClick() {
@@ -37,11 +40,14 @@ function App() {
         setIsAddPlacePopupOpen(false);
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
-        setSelectedCard('')
+        // setSelectedCard({name: '', link: ''})
+        // setSelectedCard('')
+        setSelectedCard(null)
     }
 
     function handleCardClick(selectedCard) {
         setSelectedCard(selectedCard)
+        setImagePopupOpen(true);
     }
 
 
@@ -120,6 +126,7 @@ function App() {
             <ImagePopup
                 card={selectedCard}
                 onClose={closeAllPopups}
+                isOpen={isImagePopupOpen}
             />
 
         </div>

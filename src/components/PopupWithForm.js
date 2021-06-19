@@ -9,9 +9,11 @@ function PopupWithForm(props) {
             <div className="popup__content">
 
                 <form
-                    className= {'form form_type_${props.name}'}
+                    className= {`form form_type_${props.name}`}
                     name={props.name}
-                    noValidate>
+                    // noValidate - Если нет своей валидации, то лучше удалить атрибут noValidate из тега form, чтобы
+                    // встроенная валидация работала и не давала отправить пустые данные на сервер. Gennadiy Barsegyan, ревьюер
+                >
 
                     <h2 className="form__title">{props.title}</h2>
                     {/*Редактировать профиль*/}
@@ -20,10 +22,8 @@ function PopupWithForm(props) {
                         {props.children}
                         {/* можно и просто {children}, если записать: function PopupWithForm(props, {children})*/}
 
-                    <button type="submit" className="form__submit-button"
-                            id="submit-update-avatar-image">{props.buttonText}
+                    <button type="submit" className="form__submit-button">{props.buttonText}
                     </button>
-                        {/*Сохранить id="submit-profile-info"*/}
 
                     </fieldset>
                 </form>
@@ -33,7 +33,6 @@ function PopupWithForm(props) {
                         aria-label="Закрыть"
                         onClick = {props.onClose}
                 />
-                {/*id="close-popup-edit-profile"*/}
 
             </div>
         </div>

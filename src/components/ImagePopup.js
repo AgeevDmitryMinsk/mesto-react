@@ -1,6 +1,8 @@
 function ImagePopup(props) {
     return (
-        <div className={`popup popup_use_view-full-photo ${props.card && "popup_is-opened"}`}>
+        // <div className={`popup popup_use_view-full-photo ${props.card && "popup_is-opened"}`}>
+        <div className={`popup popup_use_view-full-photo ${props.card && props.isOpen ? "popup_is-opened" : "popup__hide"}`}>
+
             <div className="popup__full-photo-container">
                 <img className="popup__full-photo"
                      src={props.card ? props.card.link : ''}

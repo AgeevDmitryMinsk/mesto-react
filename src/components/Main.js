@@ -32,8 +32,6 @@ function Main(props) {
     }, []);
 
     return (
-        <>
-
             <main className="content project-area__section-position">
                 <section className="profile">
                     <div className="profile__all-user-info">
@@ -72,7 +70,6 @@ function Main(props) {
                 </ul>
 
             </main>
-        </>
     )
 }
 
