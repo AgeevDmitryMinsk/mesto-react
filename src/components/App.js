@@ -40,9 +40,12 @@ function App() {
         setIsAddPlacePopupOpen(false);
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
-        // setSelectedCard({name: '', link: ''})
-        // setSelectedCard('')
-        setSelectedCard(null)
+        //setSelectedCard(null) нужно возвращать обратно к данным по умолчанию,
+        // а по умолчанию Вы сделали на 15й строчке пустой объект {}- исправил на:
+        setSelectedCard({})
+
+        setImagePopupOpen(false)
+
     }
 
     function handleCardClick(selectedCard) {

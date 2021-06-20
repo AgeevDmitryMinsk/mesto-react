@@ -20,7 +20,8 @@ function PopupWithForm(props) {
 
                     <fieldset className="form__container">
                         {props.children}
-                        {/* можно и просто {children}, если записать: function PopupWithForm(props, {children})*/}
+                        {/* можно и просто {children}, если  сделаете деструктуризацию объекта props:*/}
+                        {/*function PopupWithForm({name, isOpen, children, buttonText, title, onClose}) {  - Gennadiy Barsegyan, ревьюер*/}
 
                     <button type="submit" className="form__submit-button">{props.buttonText}
                     </button>
