@@ -9,6 +9,7 @@ import AddPlacePopup from "./AddPlacePopup";
 import Footer from "./Footer";
 import api from "../utils/api";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
+import {Spinner} from './Spinner.js';
 
 export default App;
 
@@ -20,8 +21,10 @@ function App() {
     const [currentUser, setCurrentUser]                       = React.useState({});
     const [cards, setCards]                                   = React.useState([]);
     const [isImagePopupOpen, setImagePopupOpen]               = React.useState(false);
+    const [isLoading, setIsLoading]                           = React.useState(false);
 
     React.useEffect(() => {
+        setIsLoading(true);
         api
             .getInitialCards()
             .then((cardList) => {
@@ -29,6 +32,9 @@ function App() {
             })
             .catch((err) => {
                 console.log(err);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     }, []);
 
@@ -133,73 +139,77 @@ function App() {
     }
 
     return (
-        <CurrentUserContext.Provider value={currentUser}>
-            <div className="page">
-                <Header/>
-                {/* main */}
-                <Main
-                    onEditProfile={handleEditProfileClick}
-                    onAddPlace={handleAddPlaceClick}
-                    onEditAvatar={handleEditAvatarClick}
-                    onCardClick={handleCardClick}
-                    onCardLike={handleCardLike}
-                    cards={cards}
-                    onCardDelete={handleCardDelete}
-                />
-                {/* end main */}
+        isLoading ? (
+            <Spinner/>
+        ) : (
+            <CurrentUserContext.Provider value={currentUser}>
+                <div className="page">
+                    <Header/>
+                    {/* main */}
+                    <Main
+                        onEditProfile={handleEditProfileClick}
+                        onAddPlace={handleAddPlaceClick}
+                        onEditAvatar={handleEditAvatarClick}
+                        onCardClick={handleCardClick}
+                        onCardLike={handleCardLike}
+                        cards={cards}
+                        onCardDelete={handleCardDelete}
+                    />
+                    {/* end main */}
 
-                {/* footer */}
-                <Footer/>
-                {/* end footer */}
+                    {/* footer */}
+                    <Footer/>
+                    {/* end footer */}
 
-                {/* popup profile */}
+                    {/* popup profile */}
 
-                <EditProfilePopup
-                    isOpen={isEditProfilePopupOpen}
-                    onClose={closeAllPopups}
-                    onUpdateUser={handleUpdateUser}
-                />
+                    <EditProfilePopup
+                        isOpen={isEditProfilePopupOpen}
+                        onClose={closeAllPopups}
+                        onUpdateUser={handleUpdateUser}
+                    />
 
-                {/* end popup profile */}
+                    {/* end popup profile */}
 
-                {/* start popup creat card */}
+                    {/* start popup creat card */}
 
-                <AddPlacePopup
-                    isOpen={isAddPlacePopupOpen}
-                    onClose={closeAllPopups}
-                    onAddPlace={handleAddPlaceSubmit}
-                />
+                    <AddPlacePopup
+                        isOpen={isAddPlacePopupOpen}
+                        onClose={closeAllPopups}
+                        onAddPlace={handleAddPlaceSubmit}
+                    />
 
-                {/* end popup creat card */}
+                    {/* end popup creat card */}
 
-                {/* start popup edite avatar */}
+                    {/* start popup edite avatar */}
 
-                <EditAvatarPopup
-                    isOpen={isEditAvatarPopupOpen}
-                    onClose={closeAllPopups}
-                    onUpdateAvatar={handleUpdateAvatar}
-                />
+                    <EditAvatarPopup
+                        isOpen={isEditAvatarPopupOpen}
+                        onClose={closeAllPopups}
+                        onUpdateAvatar={handleUpdateAvatar}
+                    />
 
-                {/* end popup edite avatar */}
+                    {/* end popup edite avatar */}
 
-                {/* start popup ask */}
-                <PopupWithForm
-                    title="Вы уверены?"
-                    name="remove-card"
-                    buttonText="Да"
-                    onClose={closeAllPopups}></PopupWithForm>
-                {/* end popup ask */}
+                    {/* start popup ask */}
+                    <PopupWithForm
+                        title="Вы уверены?"
+                        name="remove-card"
+                        buttonText="Да"
+                        onClose={closeAllPopups}></PopupWithForm>
+                    {/* end popup ask */}
 
-                {/* start popup img */}
+                    {/* start popup img */}
 
-                <ImagePopup
-                    card={selectedCard}
-                    onClose={closeAllPopups}
-                    isOpen={isImagePopupOpen}
-                />
+                    <ImagePopup
+                        card={selectedCard}
+                        onClose={closeAllPopups}
+                        isOpen={isImagePopupOpen}
+                    />
 
-                {/* end popup img */}
-            </div>
-        </CurrentUserContext.Provider>
-    );
+                    {/* end popup img */}
+                </div>
+            </CurrentUserContext.Provider>
+        )
+)
 }

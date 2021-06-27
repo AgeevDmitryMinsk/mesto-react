@@ -97,3 +97,6 @@
 @import url("./blocks/popup-remove/__form/popup-remove__form.css");
 @import url("./blocks/popup-remove/__container/popup-remove__container.css");
 @import url("./blocks/popup-remove/__button/popup-remove__button.css");
+
+/*spinner*/
+@import url('./blocks/content/__spinner/content__spinner.css');
