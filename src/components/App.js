@@ -17,6 +17,7 @@ function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen]       = React.useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen]   = React.useState(false);
+    const [isDeletePlacePopupOpen, setIsDeletePlacePopupOpen] = React.useState(false)
     const [selectedCard, setSelectedCard]                     = React.useState({});
     const [currentUser, setCurrentUser]                       = React.useState({});
     const [cards, setCards]                                   = React.useState([]);
@@ -56,6 +57,7 @@ function App() {
     }
 
     function handleCardDelete(card) {
+        setIsDeletePlacePopupOpen(true);
         api
             .removeCard(card._id)
             .then(() => {
@@ -95,6 +97,7 @@ function App() {
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
         setSelectedCard(null);
+        setIsDeletePlacePopupOpen(false)
     }
 
     function handleCardClick(card) {
@@ -193,6 +196,7 @@ function App() {
 
                     {/* start popup ask */}
                     <PopupWithForm
+                        isOpen={isDeletePlacePopupOpen}
                         title="Вы уверены?"
                         name="remove-card"
                         buttonText="Да"
