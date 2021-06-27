@@ -1,25 +1,22 @@
+import React from "react";
+
 function ImagePopup(props) {
     return (
-
-        <div className={`popup popup_use_view-full-photo ${props.card.link ? "popup_is-opened" : ""}`}>
-
-            <div className="popup__full-photo-container">
-                <img className="popup__full-photo"
-                     //src={props.card ? props.card.link : ''} - упростил до:
-                     src={props.card?.link}
-
-                     // alt={props.card ? props.card.name : ''}/>  - упростил до:
-                     alt={props.card?.name}/>
-
-                <p className="popup__full-photo-title"> {props.card ? props.card.name : ''} </p>
-                <button className="close-icon"
-                        type="button"
-                        id="close-popup-view-full-photo"
-                        onClick={props.onClose}
-                        aria-label="Закрыть"/>
+        <div className={`popup popup-img ${props.card && props.isOpen ? "popup__opened" : "popup__hide"}`}>
+            <div className="popup-img__container">
+                <button
+                    className="popup-img__close"
+                    type="button"
+                    onClick={props.onClose}></button>
+                <img
+                    src={props.card?.link}
+                    alt={ props.card?.name}
+                    className="popup-img__image"
+                />
+                <p className="popup-img__subtitle">{props.card ? props.card.name : ''}</p>
             </div>
         </div>
-    )
+    );
 }
 
 export default ImagePopup;

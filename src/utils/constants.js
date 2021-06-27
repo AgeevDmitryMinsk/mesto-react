@@ -1,36 +1,73 @@
-const clickEditButton  = document.querySelector('#edit-profile'); //Переменная для кнопки редактирования профиля
-const newUsername      = document.querySelector('#username'); //Переменная для инпута с именем пользователя
-const newBio           = document.querySelector('#bio'); //Переменная для инпута с биографией
-const formEditProfile  = document.querySelector('.form.form_function_edit-profile'); //Переменная для формы редактирования профиля
-const newPhotoName     = document.querySelector('#location-name') //Переменная для инута с названием места карточки
-const newPhotoURL      = document.querySelector('#photo-url') //Переменная для инпута с урл картинки места
-const clickAddPhoto    = document.querySelector('#add-element'); //Переменная для кнопки добавления фото
-const formAddPhoto     = document.querySelector('.form.form_function_add-photo'); //Переменная для формы редактирования профиля
-const photoGallery     = document.querySelector('.elements'); //Переменная для фотопотока пользователя
-const clickAvatarImage = document.querySelector('.profile__avatar') //Переменная для контейнера с аватаркой
-const formChangeAvatar = document.querySelector('form.form_function_update-avatar-image')//Переменная для формы редактирования аватара
-const newAvatarURL     = document.querySelector('#avatar-image-url') //Переменная для инпута с урл аватарки
+export const validationConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input-error',
+    errorClass: 'popup__input-error_visible'
+};
 
-//Объект со свойствами селекторами для валидатора форм
-const formConfig = {
-    inputSelector: '.form__input',
-    submitButtonSelector: '.form__submit-button',
-    inactiveButtonClass: 'form__submit-button_inactive',
-    inputErrorClass: 'form__input-error',
+//  selectors
+export const profileSelectors = {
+    profileName: '.profile__name',
+    profileProfession: '.profile__subtitle',
+    profileAvatar: '.profile__avatar'
 }
+export const template = 'template';
+// cards section
+export const elementsContainer = document.querySelector('.pictures');
+export const elementsContainerSelectors = '.pictures';
+// profile
+// export const profileName = document.querySelector('.profile__name');
+// export const profileJob = document.querySelector('.profile__subtitle');
+export const openBtn = document.querySelector('.profile__button-edit');
+export const openBtnSelector = '.profile__button-edit';
+export const openBtnCreat = document.querySelector('.profile__button-add');
+export const openPopupAvatar = document.querySelector('.profile__hover-edit');
+// export const imgAvatarSelector = document.querySelector('.profile__avatar');
 
-export {
-    photoGallery,
-    clickEditButton,
-    newUsername,
-    newBio,
-    formEditProfile,
-    clickAddPhoto,
-    formAddPhoto,
-    formConfig,
-    clickAvatarImage,
-    formChangeAvatar,
-    newPhotoName,
-    newPhotoURL,
-    newAvatarURL
-}
+// popup
+// export const overlay = document.querySelectorAll('.popup');
+export const jobInput = document.querySelector('.popup__input-text_type_job');
+export const popUpProfile = document.querySelector('.popup_profile');
+export const popUpProfileSelector = '.popup_profile';
+export const popUpCloseBtn = document.querySelector('.popup__close');
+export const popUpForm = document.querySelector('.popup__form');
+export const popUpFormSelect = popUpProfile.querySelector('.popup__form');
+export const nameInput = document.querySelector('.popup__input-text_type_name');
+
+// popup creat
+export const popUpCreat = document.querySelector('.popup-creat');
+export const popUpCreatSelector = '.popup-creat';
+export const containerPopCreat = popUpCreat.querySelector('.popup-creat__container');
+export const popUpCloseBtnCreat = document.querySelector('.popup-creat__close');
+export const inputName = document.querySelector('.popup-creat__input-name');
+export const inputLink = document.querySelector('.popup-creat__input-link');
+export const formElAddCard = popUpCreat.querySelector('.popup-creat__form');
+
+// popup img
+export const btnImgPopClose = document.querySelector('.popup-img__close');
+export const btnImgPopCloseSelector = '.popup-img__close';
+
+export const btnImgPop = document.querySelector('.popup-img');
+export const btnImgPopSelector = '.popup-img';
+export const popImage = document.querySelector('.popup-img__image');
+export const popImageSelector = '.popup-img__image';
+export const popImageSub = document.querySelector('.popup-img__subtitle');
+export const popImageSubSelector = '.popup-img__subtitle';
+
+// popup remove 
+export const popupRemoveSelector = '.popup-remove';
+export const popupRemove = document.querySelector('.popup-remove');
+export const popupRemoveCloseBtn = document.querySelector('.popup-remove__close');
+export const popupRemoveForm = document.querySelector('.popup-remove__form');
+export const popupRemoveSubmit = document.querySelector('.popup-remove__button');
+
+//popup avatar
+export const popupAvatar = document.querySelector('.popup-avatar');
+export const popupAvatarform = popupAvatar.querySelector('.popup-avatar__form');
+export const popupAvatarSelector = '.popup-avatar';
+export const popupAvatarContainer = document.querySelector('.popup-avatar__container');
+export const popupAvatarInput = document.querySelector('.popup-avatar__input-link');
+export const popupAvatarBtnSubmit = document.querySelector('.popup-avatar__button');
+export const profileAvatar = document.querySelector('.profile__avatar');
