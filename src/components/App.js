@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "./Header";
 import Main from "./Main";
-import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
@@ -10,6 +9,7 @@ import Footer from "./Footer";
 import api from "../utils/api";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 import {Spinner} from './Spinner.js';
+import ConfirmRemovePopup from './ConfirmRemovePopup'
 
 export default App;
 
@@ -23,6 +23,7 @@ function App() {
     const [cards, setCards]                                   = React.useState([]);
     const [isImagePopupOpen, setImagePopupOpen]               = React.useState(false);
     const [isLoading, setIsLoading]                           = React.useState(false);
+    const [cardDelete, setCardDelete]                         = React.useState({});
 
     React.useEffect(() => {
         setIsLoading(true);
@@ -56,13 +57,13 @@ function App() {
             });
     }
 
-    function handleCardDelete(card) {
-        setIsDeletePlacePopupOpen(true);
+    function handleCardDeleteSubmit(card) {
         api
             .removeCard(card._id)
             .then(() => {
                 const newCards = cards.filter((elem) => elem !== card);
                 setCards(newCards);
+                closeAllPopups();
             })
             .catch((err) => {
                 console.log(err);
@@ -90,6 +91,11 @@ function App() {
 
     function handleAddPlaceClick() {
         setIsAddPlacePopupOpen(true);
+    }
+
+    function handleCardDeleteClick(card) {
+        setIsDeletePlacePopupOpen(true);
+        setCardDelete(card);
     }
 
     function closeAllPopups() {
@@ -135,6 +141,7 @@ function App() {
             .then((data) => {
                 setCards([data, ...cards]);
                 closeAllPopups();
+                // Отлично, что закрываете попапы только при удачном ответе от сервера в блоке then - Gennadiy Barsegyan - ревьюер
             })
             .catch((err) => {
                 console.log(err);
@@ -148,15 +155,16 @@ function App() {
             <CurrentUserContext.Provider value={currentUser}>
                 <div className="page">
                     <Header/>
+
                     {/* main */}
                     <Main
+                        cards={cards}
+                        onCardClick={handleCardClick}
+                        onCardLike={handleCardLike}
                         onEditProfile={handleEditProfileClick}
                         onAddPlace={handleAddPlaceClick}
                         onEditAvatar={handleEditAvatarClick}
-                        onCardClick={handleCardClick}
-                        onCardLike={handleCardLike}
-                        cards={cards}
-                        onCardDelete={handleCardDelete}
+                        onCardDelete={handleCardDeleteClick}
                     />
                     {/* end main */}
 
@@ -195,12 +203,13 @@ function App() {
                     {/* end popup edite avatar */}
 
                     {/* start popup ask */}
-                    <PopupWithForm
+
+                    <ConfirmRemovePopup
+                        card={cardDelete}
                         isOpen={isDeletePlacePopupOpen}
-                        title="Вы уверены?"
-                        name="remove-card"
-                        buttonText="Да"
-                        onClose={closeAllPopups}></PopupWithForm>
+                        onClose={closeAllPopups}
+                        onCardConfirmRemovePopup={handleCardDeleteSubmit}
+                    />
                     {/* end popup ask */}
 
                     {/* start popup img */}
@@ -215,5 +224,5 @@ function App() {
                 </div>
             </CurrentUserContext.Provider>
         )
-)
+    )
 }

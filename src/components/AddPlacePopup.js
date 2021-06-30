@@ -9,7 +9,7 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
     React.useEffect(_ => {
         setName('');
         setLink('');
-    }, [isOpen]);
+    }, [isOpen]);    // хорошо очищаете инпуты , Gennadiy Barsegyan, ревьюер
 
     function handleSubmit(evt) {
         evt.preventDefault();
@@ -34,7 +34,9 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
             buttonText="Сохранить"
             isOpen={isOpen}
             onClose={onClose}
-            handleSubmit={handleSubmit}>
+            onSubmit={handleSubmit}
+            // handleSubmit={handleSubmit}
+        >
             <input
                 type="text"
                 className="popup-creat__input-text popup-creat__input-name"

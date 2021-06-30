@@ -9,7 +9,7 @@ function Main(props) {
     const {onEditAvatar, onAddPlace, onEditProfile, onCardClick, onCardLike, onCardDelete, cards} = props;
     const currentUser                                                                             = React.useContext(CurrentUserContext);
 
-    console.log(cards);
+    // console.log(cards);
 
     return (
         <main className="content">

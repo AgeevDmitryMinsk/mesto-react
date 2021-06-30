@@ -2,31 +2,33 @@ import React from "react";
 
 export default PopupWithForm;
 
-function PopupWithForm(props) {
+// function PopupWithForm(props) {
+function PopupWithForm({isOpen, onClose, onSubmit, name, title, children, buttonText} ) {
     return (
         <div
-            className={`popup popup_type_${props.name} ${
-                props.isOpen && "popup__opened"
+            className={`popup popup_type_${name} ${
+                isOpen && "popup__opened"
             }`}>
             <div className="popup__container">
 
 
                 <form
-                    className={`popup__form form_type_${props.name}`}
-                    name={props.name}
-                    noValidate
-                    onSubmit={props.handleSubmit}>
-                    <h2 className="popup__title">{props.title}</h2>
-                    {props.children}
+                    className={`popup__form form_type_${name}`}
+                    name={name}
+                    // noValidate - Если нет своей валидации, то лучше удалить атрибут noValidate из тега form, чтобы встроенная
+                    // валидация работала и не давала отправить пустые данные на сервер Gennadiy Barsegyan, ревьюер
+                    onSubmit={onSubmit}>
+                    <h2 className="popup__title">{title}</h2>
+                    {children}
                     <button className="popup__button" type="submit">
-                        {props.buttonText}
+                        {buttonText}
                     </button>
                 </form>
 
                 <button
                     className="popup__close"
                     type="button"
-                    onClick={props.onClose}></button>
+                    onClick={onClose}></button>
 
             </div>
         </div>

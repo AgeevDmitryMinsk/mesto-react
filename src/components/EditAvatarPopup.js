@@ -20,7 +20,9 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
             buttonText="Сохранить"
             isOpen={isOpen}
             onClose={onClose}
-            handleSubmit={handleSubmit}>
+            onSubmit={handleSubmit}
+            // handleSubmit={handleSubmit}
+        >
             <input
                 type="url"
                 className="popup-avatar__input-text popup-avatar__input-link"

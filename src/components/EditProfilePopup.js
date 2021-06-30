@@ -38,7 +38,9 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
             buttonText="Сохранить"
             isOpen={isOpen}
             onClose={onClose}
-            handleSubmit={handleSubmit}>
+            onSubmit={handleSubmit}
+            // handleSubmit={handleSubmit}
+        >
             <input
                 id="input-profile-name"
                 type="text"
